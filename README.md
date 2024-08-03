@@ -55,6 +55,62 @@ This project is a Journal Application built with Spring Boot that allows users t
      ```bash
      mvn spring-boot:run
       
+Application Properties
+Ensure your application.properties (or application.yml) is correctly set up for your MongoDB configuration:
 
+properties
+Copy code
+spring.data.mongodb.uri=mongodb://localhost:27017/yourdbname
+spring.security.user.name=admin
+spring.security.user.password=adminpassword
+Usage
+Creating a User
+You can create a user using the following endpoint:
+
+URL: http://localhost:8080/public/createUser
+
+Method: POST
+
+Headers: Content-Type: application/json
+
+Body:
+
+json
+Copy code
+{
+    "userName": "Abhi",
+    "password": "password123"
+}
+Updating a User
+URL: http://localhost:8080/user
+
+Method: PUT
+
+Headers:
+
+Content-Type: application/json
+Authorization: Basic Auth (Username and Password of the authenticated user)
+Body:
+
+json
+Copy code
+{
+    "userName": "Abhi",
+    "password": "newPassword123"
+}
+Accessing Journal Entries
+URL: http://localhost:8080/journal/Abhi
+Method: GET
+Headers: Authorization: Basic Auth (Username and Password of the authenticated user)
+API Endpoints
+Method	Endpoint	Description
+POST	/public/createUser	Create a new user
+PUT	/user	Update the authenticated user
+GET	/journal/{username}	Get journal entries for a user
+POST	/journal	Create a new journal entry
+PUT	/journal/{id}	Update a journal entry
+DELETE	/journal/{id}	Delete a journal entry
+Contributing
+Contributions are welcome! Please fork this repository and submit pull requests for any features, bug fixes, or enhancements.
 
 
